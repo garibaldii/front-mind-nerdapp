@@ -1,4 +1,5 @@
 import { ArticleProvider } from "@/context/ArticleContext";
+import { UserProvider } from "@/context/UserContext";
 
 export default function PagesLayout({
   children,
@@ -6,10 +7,12 @@ export default function PagesLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ArticleProvider>
-      <div className="p-10">
-        {children}
-      </div>
-    </ArticleProvider>
+    <UserProvider>
+      <ArticleProvider>
+        <div className="pr-10 pl-10">
+          {children}
+        </div>
+      </ArticleProvider>
+    </UserProvider>
   );
 }
