@@ -1,7 +1,8 @@
-import { LoginForm } from "@/components/organisms/LoginForm";
+
+import SignUpPage from "./signUp/page";
 
 export default function Home() {
   return (
-    <LoginForm/>
+    <SignUpPage  />
     )
 }
