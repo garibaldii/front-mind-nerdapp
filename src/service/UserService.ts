@@ -33,7 +33,17 @@ export const getUserById = async (id: number) => {
     return data
 }
 
-export const updateUser = async (id: number, name: string) => {
-  const response = await api.put(`/user/${id}`, { name });
-  return response.data;
+export const updateUser = async (id: number, name: string, photo?: File | null) => {
+    const formData = new FormData()
+    formData.append("name", name)
+    if (photo) formData.append("photo", photo)
+
+    const response = await api.put(`/user/${id}`, formData , {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    });
+    const data = response.data
+
+    return data
 };
