@@ -11,6 +11,7 @@ export interface IArticle {
   content: string;
   author: IUser;
   releaseDate: Date;
+  likes: number;
   image?: IImageBuffer 
   editDate?: Date
 }

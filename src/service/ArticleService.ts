@@ -57,7 +57,7 @@ export const updateArticle = async (
   }
   const response = await api.put(`/article/${id}`, formData, {
     headers: {
-        "Content-Type": "multipart/form-data"
+      "Content-Type": "multipart/form-data"
     }
   });
 
@@ -68,6 +68,22 @@ export const updateArticle = async (
 
 export const deleteArticle = async (id: number) => {
   const response = await api.delete(`/article/${id}`)
+
+  const data = response.data
+
+  return data
+}
+
+export const likeArticle = async (id: number) => {
+  const response = await api.post(`/article/like/${id}`)
+
+  const data = response.data
+
+  return data
+}
+
+export const unlikeArticle = async (id: number) => {
+  const response = await api.put(`/article/unlike/${id}`)
 
   const data = response.data
 

@@ -81,6 +81,7 @@ export const FeaturedArticle = ({
                 <p >{article.author.name}</p>
                 <p>{releaseDate}</p>
                 {article?.editDate && (<> — editado em {new Date(article.editDate).toLocaleDateString()}</>)}
+                <p>{article.likes}</p>
               </div>
             </div>
 
