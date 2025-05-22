@@ -1,6 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Getting Started
 
 First, run the development server:
 
@@ -14,23 +11,68 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Mind NerdApp (Frontend)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🚀 Sobre o Projeto
 
-## Learn More
+Mind NerdApp é uma aplicação frontend construída com Next.js para gerenciamento e compartilhamento de artigos na área de tecnologia da informação, com funcionalidades sociais como curtidas entre usuários. O projeto visa facilitar o cadastro, listagem, interação e engajamento com conteúdos técnicos em uma plataforma moderna, responsiva e escalável.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Tecnologias Utilizadas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Frameworks e Bibliotecas
 
-## Deploy on Vercel
+- **Next.js 13**  
+  Framework React com suporte a rotas, SSR, e ótimas práticas para performance.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **React 18**  
+  Base para construção de UI reativa e moderna.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **TypeScript**  
+  Tipagem estática para aumentar segurança e qualidade do código.
+
+- **Tailwind CSS** + **@tailwindcss/line-clamp** + **tailwindcss-animate**  
+  Framework CSS utilitário para estilização rápida, responsiva e elegante.
+
+- **Radix UI**  
+  Componentes acessíveis e não estilizados para modais, dropdowns, avatars, labels e mais.
+
+- **React Icons**  
+  Biblioteca para uso de ícones SVG, como o `FaHeart` para likes.
+
+- **Axios**  
+  Cliente HTTP para chamadas à API backend para operações CRUD e autenticação.
+
+- **JWT Decode**  
+  Para decodificar tokens JWT e manter o estado do usuário.
+
+- **React Resizable Panels**  
+  Para layouts flexíveis e painéis redimensionáveis.
+
+- **TanStack React Table**  
+  Para exibir tabelas dinâmicas e configuráveis (se houver listagens complexas).
+
+---
+
+## ⚙️ Funcionalidades Principais
+
+- **Cadastro e listagem de artigos**  
+  Com título, conteúdo, autor, imagem e datas de criação e edição.
+
+- **Interação social**  
+  Likes e deslikes em artigos com atualização instantânea na UI.
+
+- **Autenticação e controle de sessão**  
+  Via contexto React e tokens JWT.
+
+- **Uploads de imagens**  
+  Integração com AWS S3 (via backend) para armazenar fotos de artigos e autores.
+
+- **Design responsivo e acessível**  
+  Uso de Tailwind e Radix UI para garantir uma boa experiência em dispositivos móveis e desktops.
+
+- **Navegação fluida**  
+  Utilizando o roteamento do Next.js e navegação programática.
