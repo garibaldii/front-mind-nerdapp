@@ -38,7 +38,8 @@ export const NavBar = () => {
   return (
     <div>
       <div className="flex fixed right-0 z-[1000]  bg-white w-full items-center justify-between px-6 py-3 border-b border-gray-200">
-        <PictureLogo />
+        
+        <PictureLogo onClick={() => router.push("/pages/home")} className="cursor-pointer"/>
 
         {/* Menu para telas grandes */}
         <div className="hidden lg:flex items-center">
