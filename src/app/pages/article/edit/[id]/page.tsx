@@ -51,8 +51,7 @@ export default function EditArticlePage() {
 
     try {
       await updateArticle(Number(id), title, content, image);
-      alert("Artigo atualizado com sucesso!");
-      router.push("/pages/articles");
+      setModal(true)
     } catch (err: any) {
       setError(err.response.data.message);
       setModal(true)
@@ -63,7 +62,7 @@ export default function EditArticlePage() {
     <div>
       <NavBar />
       <form onSubmit={handleSubmit}>
-        <header className="flex justify-between">
+        <header className="flex justify-between mb-5">
           <h1>Editar Artigo</h1>
           <div className="flex">
             <Button
@@ -84,6 +83,7 @@ export default function EditArticlePage() {
               alt="Imagem do artigo"
               width={400}
               height={500}
+              className="mb-5"
             />
           )}
 
@@ -97,28 +97,33 @@ export default function EditArticlePage() {
           <Input
             type="file"
             accept=".jpg, .png"
+            required
             onChange={(e) => {
               const selectedFile = e.target.files?.[0];
               if (selectedFile) setImage(selectedFile);
-            }}
-            required
+
+            }
+
+            }
+
           ></Input>
           <Label>Texto</Label>
           <Textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
+            className="mb-10"
           />
         </main>
 
-         {modal && (
-        <AlertModal
-          onClose={() => router.push("/pages/articles") }
-          title={error ? "Erro! ❌😢" : "Sucesso! ✅"}
-          description={error || "Artigo atualizado com sucesso!"}
-          open={modal}
-        />
-      )}
+        {modal && (
+          <AlertModal
+            onClose={() => router.push("/pages/article/articles")}
+            title={error ? "Erro! ❌😢" : "Sucesso! ✅"}
+            description={error || "Artigo atualizado com sucesso!"}
+            open={modal}
+          />
+        )}
       </form>
     </div>
   );

@@ -48,7 +48,7 @@ function PostArticle() {
       <NavBar />
 
       <form onSubmit={handleSubmit}>
-        <header className="flex justify-between">
+        <header className="flex justify-between mb-5">
           <h1>Novo Artigo</h1>
 
           <div className="flex">
@@ -99,7 +99,7 @@ function PostArticle() {
 
       {modal && (
         <AlertModal
-          onClose={() => router.push("/pages/articles") }
+          onClose={() => router.push("/pages/article/articles") }
           title={error ? "Erro! ❌😢" : "Sucesso! ✅"}
           description={error || "Artigo postado com sucesso!"}
           open={modal}

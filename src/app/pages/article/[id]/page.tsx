@@ -4,7 +4,7 @@
 import { NavBar } from '@/components/molecules/Navbar';
 import { IArticle } from '@/interface/IArticle';
 import { getArticleById } from '@/service/ArticleService';
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Image from "next/image";
 import { useImageUrl } from '@/hooks/useImageUrl';
@@ -26,7 +26,7 @@ function ArticleDetails({ params }: Props) {
         const fetchArticle = async (id: number) => {
             const response = await getArticleById(id)
             setArticle(response)
-        }  
+        }
         fetchArticle(Number(id))
     }, [id])
 
@@ -38,7 +38,7 @@ function ArticleDetails({ params }: Props) {
             <div className='flex flex-col items-center justify-center '>
                 <h1 className='text-2xl font-bold'>{article?.title}</h1>
                 <div className='flex'>
-                    <p>Por, {article?.author.name}</p>
+                    <p>Por, {article?.author.name} </p>
                     <p className='pr-2 pl-2'>-</p>
                     <p>
                         {article?.releaseDate
@@ -46,6 +46,11 @@ function ArticleDetails({ params }: Props) {
                             : 'Data indisponível'}
                     </p>                    </div>
 
+                {article?.editDate &&
+                    <p className='font-bold'>
+                        editado em: {new Date(article.editDate).toLocaleString()}
+                    </p>
+                }
                 <div className="w-full h-px bg-gray-300 my-4" />
                 <div className="w-[100%] h-[400px] overflow-y-auto">
                     {imageUrl && (
@@ -54,16 +59,20 @@ function ArticleDetails({ params }: Props) {
                             alt="Imagem do artigo"
                             width={500}  // largura da imagem (pode ser arbitrária)
                             height={300} // altura maior que container para criar scroll
-                            style={{ width: '100%', height: '100%', objectFit: "contain"}} // largura 100%, altura automática mantendo proporção
+                            style={{ width: '100%', height: '100%', objectFit: "contain" }} // largura 100%, altura automática mantendo proporção
                         />
                     )}
                 </div>
 
 
-
-                <p className='text-lg'>{article?.content}</p>
+                <div className='text-lg space-y-4 text-justify'>
+                    {/* formatar o texto conforme escrito */}
+                    {article?.content?.split('\n').map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                    ))}
+                </div>
             </div>
-            {/* seu código aqui */}
+
         </div>
     );
 }
