@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 
 import { useImageUrl } from "@/hooks/useImageUrl";
+import { AvatarPhoto } from "../atoms/AvatarPhoto";
 
 type Props = {
   article: IArticle;
@@ -28,7 +29,9 @@ export const FeaturedArticle = ({
 }: Props) => {
   const router = useRouter();
 
-  const imageUrl = useImageUrl(article.image?.data, image);
+  const articleImage = useImageUrl(article.image?.data, image);
+  const authorPhoto = useImageUrl(article.author?.photo?.data)
+  const releaseDate = new Date(article.releaseDate).toLocaleString()
 
   const handleClick = () => {
     router.push(`/pages/article/${article.id}`); //redireciona o usuário ao artigo clicado via id = "pages/article/[id]"
@@ -39,9 +42,9 @@ export const FeaturedArticle = ({
       className={`transition-colors duration-300 rounded-lg 
   ${hoverEffect ? "hover:bg-gray-700 cursor-pointer" : "mr-1 ml-1"} `}
     >
-      {image && imageUrl && (
+      {image && articleImage && (
         <Image
-          src={imageUrl}
+          src={articleImage}
           alt="Imagem do artigo"
           width={300}
           height={500}
@@ -67,12 +70,21 @@ export const FeaturedArticle = ({
 
       {author && (
         <div className="flex items-center justify-between mt-3">
-          <p className="text-sm text-gray-600">
-            por {article.author.name}, {new Date(article.releaseDate).toLocaleDateString()}
-            {article?.editDate && (
-              <> — editado em {new Date(article.editDate).toLocaleDateString()}</>
-            )}
-          </p>
+          <div className="text-xs text-gray-600">
+            <div className="flex items-center">
+              {authorPhoto &&
+                <AvatarPhoto
+                  imageUrl={authorPhoto}
+                  alt="Foto do usuário"
+                />}
+              <div className="pl-3">
+                <p >{article.author.name}</p>
+                <p>{releaseDate}</p>
+                {article?.editDate && (<> — editado em {new Date(article.editDate).toLocaleDateString()}</>)}
+              </div>
+            </div>
+
+          </div>
           <Button className="bg-[#FF3B30]" onClick={handleClick}>
             LER MAIS
           </Button>

@@ -1,5 +1,5 @@
 import { IUser } from "./IUser";
- interface IImageBuffer {
+ export interface IImageBuffer {
   type: string
   data: number[]
 }

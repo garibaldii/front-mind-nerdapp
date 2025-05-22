@@ -7,12 +7,12 @@ import { Button } from '../ui/button';
 import { IUser } from '@/interface/IUser';
 
 
-interface MobileMenuProps {
+interface Props {
   user: IUser | null;
   onLogout: () => void;
 }
 
-export const MobileMenu = ({ user, onLogout }: MobileMenuProps) => {
+export const MobileMenu = ({ user, onLogout }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
@@ -29,12 +29,16 @@ export const MobileMenu = ({ user, onLogout }: MobileMenuProps) => {
           <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/home")}>
             Home
           </Button>
-          <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/articles")}>
+          <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/article/articles")}>
             Artigos
           </Button>
 
+          <div className="w-full h-px bg-gray-300 my-4" />
+
+          {/* Área exclusiva do usuário */}
           {!user ? (
             <>
+
               <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/login")}>
                 Entrar
               </Button>
@@ -44,13 +48,13 @@ export const MobileMenu = ({ user, onLogout }: MobileMenuProps) => {
             </>
           ) : (
             <>
-              <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/postArticle")}>
+              <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/article/postArticle")}>
                 Publicar
               </Button>
               <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/profile")}>
                 Ver perfil
               </Button>
-              <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/myArticles")}>
+              <Button variant="ghost" className="w-full text-left" onClick={() => router.push("/pages/article/myArticles")}>
                 Meus Artigos
               </Button>
               <Button variant="destructive" className="w-full text-left" onClick={onLogout}>

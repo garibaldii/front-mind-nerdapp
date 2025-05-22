@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 
 import Image from "next/image";
 import { useImageUrl } from '@/hooks/useImageUrl';
+import { AvatarPhoto } from '@/components/atoms/AvatarPhoto';
 
 
 interface Props {
@@ -20,7 +21,8 @@ function ArticleDetails({ params }: Props) {
     const { id } = params;
     const [article, setArticle] = useState<IArticle>()
 
-    const imageUrl = useImageUrl(article?.image?.data)
+    const articleImageUrl = useImageUrl(article?.image?.data)
+    const authorImageUrl = useImageUrl(article?.author?.photo?.data)
 
     useEffect(() => {
         const fetchArticle = async (id: number) => {
@@ -37,8 +39,10 @@ function ArticleDetails({ params }: Props) {
 
             <div className='flex flex-col items-center justify-center '>
                 <h1 className='text-2xl font-bold'>{article?.title}</h1>
-                <div className='flex'>
-                    <p>Por, {article?.author.name} </p>
+                <div className='flex items-center'>
+
+                    {authorImageUrl && <AvatarPhoto imageUrl={authorImageUrl} alt='foto do usuário' />}
+                    <p className='pl-3'>Por, {article?.author.name} </p>
                     <p className='pr-2 pl-2'>-</p>
                     <p>
                         {article?.releaseDate
@@ -53,9 +57,9 @@ function ArticleDetails({ params }: Props) {
                 }
                 <div className="w-full h-px bg-gray-300 my-4" />
                 <div className="w-[100%] h-[400px] overflow-y-auto">
-                    {imageUrl && (
+                    {articleImageUrl && (
                         <Image
-                            src={imageUrl}
+                            src={articleImageUrl}
                             alt="Imagem do artigo"
                             width={500}  // largura da imagem (pode ser arbitrária)
                             height={300} // altura maior que container para criar scroll

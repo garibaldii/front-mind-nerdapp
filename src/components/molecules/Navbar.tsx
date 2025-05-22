@@ -19,10 +19,13 @@ import {
 import { useUser } from "@/context/UserContext";
 import { AlertModal } from "./AlertModal";
 import { MobileMenu } from "./MobileMenu";
+import { AvatarPhoto } from "../atoms/AvatarPhoto";
+import { useImageUrl } from "@/hooks/useImageUrl";
 
 export const NavBar = () => {
   const router = useRouter();
   const { user, refreshUserData } = useUser();
+  const imageUrl = useImageUrl(user?.photo?.data)
 
   const [modal, setModal] = useState(false);
 
@@ -67,6 +70,12 @@ export const NavBar = () => {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost">
+
+                    {imageUrl && <AvatarPhoto
+                      imageUrl={imageUrl}
+                      alt={"avatar do usuário"} />
+                    }
+
                     Olá, {user?.name || user?.email}
                   </Button>
                 </DropdownMenuTrigger>
@@ -90,7 +99,7 @@ export const NavBar = () => {
           )}
         </div>
 
-        {/* Menu Mobile: visível apenas em telas menores */}
+        {/* Menu Mobile */}
         <div className="lg:hidden z-[1000] ">
           <MobileMenu user={user} onLogout={handleLogout} />
         </div>
