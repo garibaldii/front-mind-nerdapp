@@ -10,7 +10,7 @@ function SignUpPage() {
 
     const handleRegister = async (email: string, password: string) => {
         await singUp(email, password)
-        router.push("/pages/home");
+        router.push("/login");
     };
 
     return (
