@@ -47,3 +47,19 @@ export const updateUser = async (id: number, name: string, photo?: File | null) 
 
     return data
 };
+
+export const likeArticle = async (userId: number, articleId: number) => {
+    const result = await api.post(`/user/${userId}/like/${articleId}`)
+
+    const data = result.data
+
+    return data
+}
+
+export const unlikeArticle = async (userId: number, articleId: number) => {
+    const result = await api.delete(`/user/${userId}/unlike/${articleId}`)
+
+    const data = result.data
+
+    return data
+}

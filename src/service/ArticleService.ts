@@ -74,18 +74,3 @@ export const deleteArticle = async (id: number) => {
   return data
 }
 
-export const likeArticle = async (id: number) => {
-  const response = await api.post(`/article/like/${id}`)
-
-  const data = response.data
-
-  return data
-}
-
-export const unlikeArticle = async (id: number) => {
-  const response = await api.put(`/article/unlike/${id}`)
-
-  const data = response.data
-
-  return data
-}

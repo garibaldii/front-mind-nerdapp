@@ -7,4 +7,5 @@ export interface IUser {
     password: string
     articles?: IArticle[]
     photo?: IImageBuffer
+    likedArticles?: IArticle[]
 }
