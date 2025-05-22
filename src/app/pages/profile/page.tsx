@@ -7,19 +7,26 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { useArticle } from "@/context/ArticleContext"
 import { useUser } from "@/context/UserContext"
+import { useImageUrl } from "@/hooks/useImageUrl"
 import { updateUser } from "@/service/UserService"
-import { joinNames } from "@/utils/NameUtils"
+import { joinNames } from "@/utils/UserUtils"
+import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 function Profile() {
     const router = useRouter()
 
+
+
     const { user, refreshUserData } = useUser()
     const { refreshArticleData } = useArticle()
 
+    const imageUrl = useImageUrl(user?.photo?.data);
+
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+    const [photo, setPhoto] = useState<File | undefined>(undefined);
 
     const [modal, setModal] = useState(false)
     const [error, setError] = useState("")
@@ -30,7 +37,7 @@ function Profile() {
             if (user) {
                 const fullName = joinNames(firstName, lastName)
 
-                const response = await updateUser(user.id, fullName)
+                const response = await updateUser(user.id, fullName, photo)
                 console.log(response)
 
                 //chama o banco para atualizar tanto o usuário, quanto o seus artigos
@@ -40,7 +47,7 @@ function Profile() {
                 //exibe mensagem de confirmação
                 setModal(true)
             }
-            else{
+            else {
                 setError("Por favor, realize login")
                 setModal(true)
             }
@@ -65,14 +72,38 @@ function Profile() {
                     </div>
                 </header>
 
+                <div className="flex items-center">
+                    {imageUrl &&
+                        <Image
+                            src={imageUrl}
+                            alt={""}
+                            width={100}
+                            height={100}
+                            className="rounded-[100%]"
+                        />
+                    }
+                    <div className="pl-3 w-full">
+                        <Label>Avatar</Label>
+                        <Input
+                            type="file"
+                            accept=".jpg, .png"
+                            onChange={(e) => {
+                                const selectedFile = e.target.files?.[0];
+                                if (selectedFile) setPhoto(selectedFile);
+                            }}
+                            className="w-full"
+                        />
+                    </div>
+                </div>
                 <main>
                     <Label>Nome</Label>
+
                     <Input
                         placeholder="Digite seu nome"
                         value={firstName}
                         onChange={(e) => setFirstName(e.target.value)}
                         required
-                    ></Input>
+                    />
 
                     <Label>Sobrenome</Label>
                     <Input
@@ -80,7 +111,9 @@ function Profile() {
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}
                         required
-                    ></Input>
+                    />
+
+
                 </main>
             </form>
 

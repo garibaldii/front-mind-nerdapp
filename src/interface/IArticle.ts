@@ -1,5 +1,5 @@
 import { IUser } from "./IUser";
- interface IImageBuffer {
+ export interface IImageBuffer {
   type: string
   data: number[]
 }
@@ -11,6 +11,7 @@ export interface IArticle {
   content: string;
   author: IUser;
   releaseDate: Date;
+  likes: number;
   image?: IImageBuffer 
   editDate?: Date
 }

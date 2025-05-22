@@ -12,12 +12,13 @@ const Home = () => {
 
   //articles.length
 
-  // Pega os 4 últimos artigos (excluindo o primeiro)
+  // Pega os próximos 4 artigos (excluindo o primeiro)
   const lastFourArticles = []
-  for (let i = articles.length - 2; i >= 1 && lastFourArticles.length < 4; i--) {
+  for (let i = articles.length - 2; i >= 0 && lastFourArticles.length < 4; i--) {
     lastFourArticles.push(articles[i])
   }
 
+  //Pega os últimos 3 artigos
   const LastThreeArticles = []
   for (let i = articles.length - 6; i >= 1 && LastThreeArticles.length < 3; i--) {
     LastThreeArticles.push(articles[i])
