@@ -47,14 +47,14 @@ function ArticleDetails({ params }: Props) {
                     </p>                    </div>
 
                 <div className="w-full h-px bg-gray-300 my-4" />
-                <div className="w-[70%] h-[400px] overflow-y-auto">
+                <div className="w-[100%] h-[400px] overflow-y-auto">
                     {imageUrl && (
                         <Image
                             src={imageUrl}
                             alt="Imagem do artigo"
                             width={500}  // largura da imagem (pode ser arbitrária)
-                            height={800} // altura maior que container para criar scroll
-                            style={{ width: '100%', height: 'auto' }} // largura 100%, altura automática mantendo proporção
+                            height={300} // altura maior que container para criar scroll
+                            style={{ width: '100%', height: '100%', objectFit: "contain"}} // largura 100%, altura automática mantendo proporção
                         />
                     )}
                 </div>
