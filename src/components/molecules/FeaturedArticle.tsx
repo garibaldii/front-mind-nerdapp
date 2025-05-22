@@ -37,7 +37,7 @@ export const FeaturedArticle = ({
   return (
     <div
       className={`transition-colors duration-300 rounded-lg 
-  ${hoverEffect ? "hover:bg-gray-700 cursor-pointer" : ""} p-1`}
+  ${hoverEffect ? "hover:bg-gray-700 cursor-pointer" : "mr-1 ml-1"} `}
     >
       {image && imageUrl && (
         <Image
@@ -45,14 +45,11 @@ export const FeaturedArticle = ({
           alt="Imagem do artigo"
           width={300}
           height={500}
-          style={{
-            width: "100%", // força largura fixa
-            height: "400px", // força altura fixa
-            objectFit: "cover", // cobre toda a área sem distorcer, cortando se necessário
-          }}
-          className="cursor-pointer"
+          className={`w-full object-cover cursor-pointer
+    h-[200px] sm:h-[60vh]`} // <- define altura menor no mobile e ajusta em telas maiores
           onClick={handleClick}
         />
+
       )}
       {title && (
         <div
@@ -71,14 +68,17 @@ export const FeaturedArticle = ({
       {author && (
         <div className="flex items-center justify-between mt-3">
           <p className="text-sm text-gray-600">
-            por {article.author.name},
-            {new Date(article.releaseDate).toLocaleDateString()}
+            por {article.author.name}, {new Date(article.releaseDate).toLocaleDateString()}
+            {article?.editDate && (
+              <> — editado em {new Date(article.editDate).toLocaleDateString()}</>
+            )}
           </p>
           <Button className="bg-[#FF3B30]" onClick={handleClick}>
             LER MAIS
           </Button>
         </div>
       )}
+
     </div>
   );
 };
