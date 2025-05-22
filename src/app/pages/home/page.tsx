@@ -78,7 +78,6 @@ const Home = () => {
                       author={false}
                       image={true}
                       hoverEffect={false}
-                      imageHeight="20vh"
                     />
                   </div>
                 ))}
