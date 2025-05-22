@@ -22,7 +22,7 @@ export default function ArticleDataTable({ articles }: Props) {
 
   const { refreshUserData } = useUser();
 
-  useEffect(() => {refreshUserData()});
+  useEffect(() => { refreshUserData()});
 
   const handleDelete = async () => {
     if (selectedId !== null) {
@@ -45,15 +45,18 @@ export default function ArticleDataTable({ articles }: Props) {
       {
         accessorKey: "releaseDate",
         header: "Data de Postagem",
-        cell: ({ row }) => <div>{row.getValue("releaseDate")}</div>,
+        cell: ({ row }) => <div>{new Date(row.getValue("releaseDate")).toLocaleString()}</div>,
       },
       {
         accessorKey: "content",
         header: "Prévia do conteúdo",
         cell: ({ row }) => (
-          <div className="line-clamp-2">{row.getValue("content")}</div>
+          <div className="line-clamp-2 max-w-[500px] overflow-hidden text-ellipsis">
+            {row.getValue("content")}
+          </div>
         ),
       },
+
       {
         accessorKey: "actions",
         header: "Ações",
@@ -63,7 +66,7 @@ export default function ArticleDataTable({ articles }: Props) {
             <div className="flex p-3">
               <Button
                 className="mr-3"
-                onClick={() => router.push(`/pages/edit/${article.id}`)}
+                onClick={() => router.push(`/pages/article/edit/${article.id}`)}
               >
                 ✏️
               </Button>
