@@ -4,16 +4,18 @@ import { NavBar } from "@/components/molecules/Navbar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useArticle } from "@/context/ArticleContext"
 import { useUser } from "@/context/UserContext"
 import { updateUser } from "@/service/UserService"
 import { joinNames } from "@/utils/NameUtils"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 
-
 function Profile() {
     const router = useRouter()
+
     const { user, refreshUserData } = useUser()
+    const {refreshArticleData} =  useArticle()
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -27,7 +29,9 @@ function Profile() {
                 const response = await updateUser(user.id, fullName)
                 console.log(response)
 
+                //chama o banco para atualizar tanto o usuário, quanto o seus artigos
                 refreshUserData()
+                refreshArticleData()
 
                 alert("Dados Atualizados!")
             }
