@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState } from "react";
 import { Label } from "@radix-ui/react-label";
@@ -40,7 +40,7 @@ export const AuthForm = ({ type, onSubmit }: AuthFormProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-custom-lds-blur w-2/4 rounded-lg space-y-6 min-h-[0px] flex flex-col justify-center"
+      className="w-full sm:w-2/4 rounded-lg space-y-6 min-h-[0px] flex flex-col justify-center"
     >
       <div className="flex flex-col">
         <Label htmlFor="email">Email</Label>
