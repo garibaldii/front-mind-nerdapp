@@ -12,4 +12,5 @@ export interface IArticle {
   author: IUser;
   releaseDate: Date;
   image?: IImageBuffer 
+  editDate?: Date
 }
