@@ -13,7 +13,7 @@ interface AuthScreenProps {
 export const AuthScreen = ({ type, onSubmit, title, link }: AuthScreenProps) => {
   return (
     <div className="flex items-center justify-center min-h-screen w-full relative">
-      <div className="flex justify-center items-center w-3/4 bg-[#090909] min-h-screen">
+      <div className="hidden sm:flex justify-center items-center w-3/4 bg-[#090909] min-h-screen">
         <FullLogo />
       </div>
 

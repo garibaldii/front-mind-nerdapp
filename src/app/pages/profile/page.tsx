@@ -1,5 +1,6 @@
 'use client'
 
+import { AlertModal } from "@/components/molecules/AlertModal"
 import { NavBar } from "@/components/molecules/Navbar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -15,10 +16,13 @@ function Profile() {
     const router = useRouter()
 
     const { user, refreshUserData } = useUser()
-    const {refreshArticleData} =  useArticle()
+    const { refreshArticleData } = useArticle()
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
+
+    const [modal, setModal] = useState(false)
+    const [error, setError] = useState("")
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -33,9 +37,16 @@ function Profile() {
                 refreshUserData()
                 refreshArticleData()
 
-                alert("Dados Atualizados!")
+                //exibe mensagem de confirmação
+                setModal(true)
             }
-        } catch (error) {
+            else{
+                setError("Por favor, realize login")
+                setModal(true)
+            }
+        } catch (error: any) {
+            setError(error.response.data.message)
+            setModal(true)
             console.error(error)
         }
     }
@@ -72,6 +83,17 @@ function Profile() {
                     ></Input>
                 </main>
             </form>
+
+
+            {modal && (
+                <AlertModal
+                    onClose={() => router.push("/pages/article/articles")}
+                    title={error ? "Erro! ❌😢" : "Sucesso! ✅"}
+                    description={error || "Dados atualizados com sucesso!"}
+                    open={modal}
+                />
+            )}
+
         </div>
     )
 }
