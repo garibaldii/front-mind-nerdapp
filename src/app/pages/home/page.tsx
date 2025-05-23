@@ -1,37 +1,56 @@
-"use client"
+"use client";
 
-import { NavBar } from "@/components/molecules/Navbar"
-import { FeaturedArticle } from "@/components/molecules/FeaturedArticle"
-import { useArticle } from "@/context/ArticleContext"
+import { NavBar } from "@/components/molecules/Navbar";
+import { FeaturedArticle } from "@/components/molecules/FeaturedArticle";
+import { useArticle } from "@/context/ArticleContext";
 
 const Home = () => {
-  const { articles } = useArticle()
+  const { articles } = useArticle();
 
-  const lastArticleIndex = articles.length - 1
-  const lastArticle = articles[lastArticleIndex]
-
-  //articles.length
-
-  // Pega os próximos 4 artigos (excluindo o primeiro)
-  const lastFourArticles = []
-  for (let i = articles.length - 2; i >= 0 && lastFourArticles.length < 4; i--) {
-    lastFourArticles.push(articles[i])
+  if (!articles.length) {
+    return (
+      <div className="min-h-screen relative flex flex-col">
+        <NavBar />
+        <div className="flex flex-1 items-center justify-center px-4 text-center">
+          <p className="text-lg sm:text-xl text-gray-400 max-w-xl">
+            Opa, parece que ninguém ainda postou um artigo, tente postar para
+            exibí-los na aqui!
+          </p>
+        </div>
+      </div>
+    );
   }
 
-  //Pega os últimos 3 artigos
-  const LastThreeArticles = []
-  for (let i = articles.length - 6; i >= 1 && LastThreeArticles.length < 3; i--) {
-    LastThreeArticles.push(articles[i])
+  const lastArticleIndex = articles.length - 1;
+  const lastArticle = articles[lastArticleIndex];
+
+  // Pega os próximos 4 artigos (excluindo o último)
+  const lastFourArticles = [];
+  for (
+    let i = articles.length - 2;
+    i >= 0 && lastFourArticles.length < 4;
+    i--
+  ) {
+    lastFourArticles.push(articles[i]);
+  }
+
+  // Pega os últimos 3 artigos (excluindo os primeiros e últimos usados)
+  const LastThreeArticles = [];
+  for (
+    let i = articles.length - 6;
+    i >= 1 && LastThreeArticles.length < 3;
+    i--
+  ) {
+    LastThreeArticles.push(articles[i]);
   }
 
   return (
     <div className="min-h-screen relative">
       <NavBar />
 
-      {articles.length && <div className="flex flex-col items-center justify-center w-full mt-3">
+      <div className="flex flex-col items-center justify-center w-full mt-3">
         <div className="w-[100%] lg:w-3/4">
-          <main className="sm:flex justify-center items-stretch  gap-8 max-w-7xl  mt-10">
-
+          <main className="sm:flex justify-center items-stretch gap-8 max-w-7xl mt-10">
             {/* Lado esquerdo */}
             <div className="sm:w-1/2 flex flex-col mb-10 ">
               <FeaturedArticle
@@ -85,13 +104,10 @@ const Home = () => {
               </div>
             </div>
           </footer>
-
         </div>
       </div>
-      }
-
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

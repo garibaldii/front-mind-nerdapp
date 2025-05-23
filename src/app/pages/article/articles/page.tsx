@@ -13,6 +13,19 @@ function Articles() {
     refreshArticleData();
   }, [refreshArticleData]);
 
+  if (!articles.length) {
+    return (
+      <div className="min-h-screen relative flex flex-col">
+        <NavBar />
+        <div className="flex flex-1 items-center justify-center px-4 text-center">
+          <p className="text-lg sm:text-xl text-gray-400 max-w-xl">
+            Opa, parece que ninguém ainda postou um artigo, tente postar para exibí-los aqui!
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
