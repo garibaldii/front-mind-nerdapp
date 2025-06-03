@@ -11,6 +11,9 @@ interface AuthFormProps {
   onSubmit: (email: string, password: string) => Promise<void>;
 }
 
+//este componente foi criado a fim de evitar a duplicacao de código para situações que só se mudavam a funcao de submit
+//e detalhes adicionais, como titulo...
+
 export const AuthForm = ({ type, onSubmit }: AuthFormProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

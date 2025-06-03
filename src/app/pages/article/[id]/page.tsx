@@ -16,6 +16,7 @@ interface Props {
   };
 }
 
+//visualizar 1 artigo com detalhes
 function ArticleDetails({ params }: Props) {
   const { id } = params;
   const [article, setArticle] = useState<IArticle>();
@@ -34,7 +35,7 @@ function ArticleDetails({ params }: Props) {
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
-
+      
       {article && (
         <div className="flex flex-col items-center justify-center ">
           <h1 className="text-2xl font-bold">{article?.title}</h1>
@@ -49,7 +50,7 @@ function ArticleDetails({ params }: Props) {
                 ? new Date(article.releaseDate).toLocaleDateString()
                 : "Data indisponível"}
             </p>
-            
+
           </div>
 
           {article?.editDate && (

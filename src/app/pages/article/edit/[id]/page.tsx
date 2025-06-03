@@ -101,9 +101,7 @@ export default function EditArticlePage() {
             onChange={(e) => {
               const selectedFile = e.target.files?.[0];
               if (selectedFile) setImage(selectedFile);
-
             }
-
             }
 
           ></Input>

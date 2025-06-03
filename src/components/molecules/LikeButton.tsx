@@ -17,21 +17,31 @@ export const LikeButton = ({ articleId, initialLikes }: Props) => {
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(Number(initialLikes) || 0);
 
+
+  //para inicializar já com a contagem de likes
   useEffect(() => {
+    //verifica se o id do artigo já foi encontrado na lista de artigos curtidos do usuário
     setLiked(isArticleLiked(user?.likedArticles, Number(articleId)));
+    //atualiza o contador
     setLikesCount(Number(initialLikes) || 0);
-  }, [user?.likedArticles, articleId, initialLikes]);
+
+  },
+    //a cada alteração das curtidas do usuário, redimensiona este componente
+    [user?.likedArticles, articleId, initialLikes]);
 
   const handleLikeClick = async () => {
     try {
+      //sem login nao consegue dar like
       if (!user) return;
 
-      if (!liked) {
-        await likeArticle(user.id,  Number(articleId));
+      //se nao curtiu, chama a api para dar baixa no serviço
+      if (!liked) { 
+        await likeArticle(user.id, Number(articleId));
         setLiked(true);
         setLikesCount((prev) => prev + 1);
       } else {
-        await unlikeArticle(user.id,  Number(articleId));
+        //se curtiu, descurte...
+        await unlikeArticle(user.id, Number(articleId));
         setLiked(false);
         setLikesCount((prev) => prev - 1);
       }

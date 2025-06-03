@@ -7,7 +7,7 @@ import { useImageUrl } from "@/hooks/useImageUrl";
 import { IArticle } from "@/interface/IArticle";
 import { Button } from "../ui/button";
 import { AvatarPhoto } from "../atoms/AvatarPhoto";
-import { LikeButton } from "./LikeButton"; // ajuste o caminho conforme necessário
+import { LikeButton } from "./LikeButton";
 
 type Props = {
   article: IArticle;
@@ -84,7 +84,7 @@ export const FeaturedArticle = ({
                     {new Date(article.editDate).toLocaleDateString()}
                   </>
                 )}
-               
+                {/*Componente que será responsável pela exibição de likes e sincronização com banco */}
                 <LikeButton articleId={String(article.id)} initialLikes={article.likes} />
               </div>
             </div>

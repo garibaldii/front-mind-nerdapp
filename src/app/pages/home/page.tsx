@@ -34,7 +34,7 @@ const Home = () => {
     lastFourArticles.push(articles[i]);
   }
 
-  // Pega os últimos 3 artigos (excluindo os primeiros e últimos usados)
+  // Pega os últimos 3 artigos (excluindo os primeiros e 4 últimos usados)
   const LastThreeArticles = [];
   for (
     let i = articles.length - 6;

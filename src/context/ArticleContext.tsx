@@ -15,7 +15,7 @@ export const ArticleProvider = ({ children }: { children: ReactNode }) => {
   const [articles, setArticles] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
-  // Memoiza a função para manter a mesma referência entre renders
+  // Memoiza a função para manter a mesma referência entre renders, e evita o redimensionamento desnecessário
   const fetchData = useCallback(async () => {
     try {
       const articlesData = await getArticles()
