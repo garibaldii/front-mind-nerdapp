@@ -1,6 +1,4 @@
-import { IArticle } from "@/interface/IArticle";
 import { api } from "./http";
-import { IUser } from "@/interface/IUser";
 
 export const getArticles = async () => {
   const response = await api.get("/article");

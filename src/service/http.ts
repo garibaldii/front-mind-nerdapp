@@ -1,4 +1,5 @@
 import axios from 'axios'
+//axios para facilitar a comunicacao http com o back-end
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
